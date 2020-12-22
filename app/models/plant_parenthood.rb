@@ -1,7 +1,9 @@
 class PlantParenthood < ActiveRecord::Base
 
-     belongs_to :person
-     belongs_to :plant
+    before_save :cap_affection
+
+    belongs_to :person
+    belongs_to :plant
 
     # def plant_parents
     #     # before ActiveRecord
@@ -12,9 +14,7 @@ class PlantParenthood < ActiveRecord::Base
     # end
 
     def cap_affection
-        PlantParenthood.update( self.id, affection: self.affection.clamp( 0, 11000 ) )
-        # self.affection = self.affection.clamp( 0, 11000 )
-        # self.save
+        self.affection = self.affection.clamp( 0, 11000 )
     end
     
 end
