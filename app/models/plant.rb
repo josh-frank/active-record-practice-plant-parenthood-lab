@@ -11,11 +11,6 @@ class Plant < ActiveRecord::Base
         last_watering = self.waterings.order( created_at: :desc ).first
         days_since = ( Date.today - last_watering.created_at.to_date ).to_i
         puts "I was last watered #{ days_since } days ago"
-
-        # all_waterings = Watering.order( created_at: :desc )
-        # last_watering = all_waterings.select{ | watering | watering.plant_id == self.id }.first
-        # days_since = ( Date.today - last_watering.created_at.to_date ).to_i
-        # puts "I was last watered #{ days_since } days ago"
     end
 
 end
